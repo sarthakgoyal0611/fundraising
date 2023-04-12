@@ -1,0 +1,41 @@
+
+<center> <h1> Welcome to Fund Here!</h1> </center>
+<body style="background-color:azure;">
+
+<body>
+    <marquee direction="right" 
+        behavior="alternate" 
+        style="border:BLACK 2px SOLID">
+        <h2>We are here to help you to raise a fund!</h2>
+    </marquee>
+</body>
+<center>
+<h3>
+
+<% if current_user && current_user.is_admin == true %>
+ <%= link_to 'All Users', users_path %> |
+ <% end %>
+  <%= link_to 'Show Live Events', events_path %> |
+   <%= link_to 'Log-in or Sign-up', new_user_session_path %> |
+    <%= link_to 'About Us', pages_about_path %> |  
+    <%= link_to 'Contact Us', pages_contact_path %> | 
+    <% if current_user %>
+        <%= link_to 'Show My profile' %>
+    <% end %>
+    
+      </h3>
+ </center>
+<h1>
+<center>
+<font color="green">
+Our crowdfunding platform charges NO fees          --    0%  
+</font>
+</center>
+<h1>
+<center> <%= image_tag("homeimages/p1.jpg") %> </center>
+<h2><p> Fundraising is the process of gathering voluntary contributions of money or other resources carried out by non-profit making organisations 
+— NGOs, foundations, associations, collectives, etc. 
+— in order to be able to implement their projects. Different types of resources can be gathered depending on the situation and the organisation: food and water, medicines, toys, clothing 
+— but primarily money. Even the recruitment of volunteers can be considered as fundraising. </p> </h2>
+
+

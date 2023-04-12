@@ -1,0 +1,24 @@
+<p style="color: green"><%= notice %></p>
+<body style="background-color:oldlace;">
+
+<%= form_with url: "/search_event", method: :get do |form| %>
+  <%= form.text_field :title %>
+  <%= form.submit "Search" %>
+<% end %>
+
+<h1>Events</h1>
+<div id="events">
+  <% @events.each do |event| %>
+    <%= render event %> 
+    <p>
+      <%= link_to "Show this event", event %>
+    </p>
+    ---------------------------------------------------------
+  <% end %>
+</div>
+<% if current_user && current_user.is_admin == true %>
+  <%= link_to "New event", new_event_path %> |
+<% end %>
+
+  <%= link_to 'Home Page', root_path %>
+<%# <%= link_to "Show My Profile", show_path %>

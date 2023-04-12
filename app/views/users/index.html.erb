@@ -1,0 +1,16 @@
+<div id="articles">
+    <ol>
+        <% @users.each do |user| %>
+            <li>
+                <%= user.first_name + " " + user.last_name %>
+                <%= user.email %>  
+                 <%= user.dob %>
+                  <%# <img src=<%= @user.avatar %>
+                <%#= link_to "Show profile", profile_path(user) %>
+
+            </li>
+            <br />
+        <% end %>
+        <%= link_to 'Home Page', root_path %>
+    </ol>
+</div>
