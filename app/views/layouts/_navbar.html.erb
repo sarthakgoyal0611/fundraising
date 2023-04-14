@@ -1,0 +1,33 @@
+<div class="container-fluid">
+<div class="navbar-header">
+<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="
+#bs-example-navbar-collapse-1" aria-expanded="false">
+<span class="sr-only"><%= link_to 'Fundraising', root_path %> </span> 
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+<% if current_user && current_user.is_admin %>
+<%= link_to 'Search Events', search_event_path %> |
+<% end %> 
+<% if current_user %> 
+        <%= link_to 'Show My profile', user_path(current_user)%> |
+    <% end %>
+
+<% if current_user %>
+  <%= link_to 'Sign-Out', destroy_user_session_path, method: :delete, data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?", turbo_method: :delete} %>  
+      <% else %>
+        <%= link_to 'Log in! or Sign-Up', new_user_session_path, class: "nav-link" %> 
+      <% end %>
+      </ul>
+
+</div>
+
+
+<div class="collapse navbar-collape" id="bs-example-navbar-collapse-1">
+  <ul class="nav navbar-nav">
+  </ul>
+  </div>
+  </div>
+  </div>
+  </nav>

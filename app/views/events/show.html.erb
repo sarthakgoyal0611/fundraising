@@ -3,16 +3,21 @@
 <%= render @event %>
 
 <div>
+
+
+<br>
 <%# <%= "(Admin)" if current_user.admin? %> 
 <img src=<%= @event.photograph %> /> 
 <br>
 </br>
-  <%= link_to "Back to events", events_path %> |
+
+  <%= link_to "Back to events", events_path %> 
   <% if current_user && current_user.is_admin == true %>
 
-  <%= link_to "Edit this event", edit_events_by_admin_path(@event) %> 
-  <%= button_to "Destroy this event", @event, method: :delete %> 
+  | <%= link_to "Edit this event", edit_events_by_admin_path(@event) %> 
+  <%= button_to "Destroy this event", @event, method: :delete, data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?", turbo_method: :delete} %>
   <% end %>
+  
 <div class="field">
 </div>
 

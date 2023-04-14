@@ -1,12 +1,17 @@
 <p style="color: green"><%= notice %></p>
 <body style="background-color:oldlace;">
-
-<%= link_to "Search Events", search_event_path %>
 <h1>Events</h1>
 <div id="events">
   <% @events.each do |event| %>
     <%= render event %> 
     <p>
+    <% if current_user %>
+    This Event is hosted by <%= event.user.first_name + ' ' + event.user.last_name if event.user %>
+    <% end %>
+  
+  <strong>Status:</strong> 
+  <%= event.status %>
+    <br>
       <%= link_to "Show this event", event %>
     </p>
     ---------------------------------------------------------

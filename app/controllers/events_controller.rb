@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: %i[ show edit update destroy ]
+  before_action :set_event, only: %i[ show edit update destroy  ]
 
   # before_action :authenticate_user!, only: %i[edit update destroy ]
   # before_action :check_is_admin, only: %i[edit update destroy ]
@@ -9,9 +9,12 @@ class EventsController < ApplicationController
 
     @events = Event.all
 
-    else
+    elsif current_user
       # @events = Event.all.where({is_visible: true}) && @events = Event.all.where({is_completed: false})
       @events = Event.all.where({is_visible: true}) 
+
+    else
+      @events = Event.all.where({is_visible: true, status: :active})
     end
 
   #   @q = Event.ransack(params[:q])
@@ -20,6 +23,8 @@ class EventsController < ApplicationController
   end
 
   # GET /events/1 or /events/1.json
+
+
   def show
   end
   
@@ -46,6 +51,8 @@ class EventsController < ApplicationController
   # POST /events or /events.json
   def create
     @event = Event.new(event_params)
+    @event.user = current_user
+
 
     respond_to do |format|
       if @event.save
@@ -92,7 +99,7 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:title, :description, :Amount, :date, :photograph, :is_visible, :days_to_event)
+      params.require(:event).permit(:title, :description, :Amount, :date, :photograph, :is_visible, :expiry_date, :status)
     end
 
 

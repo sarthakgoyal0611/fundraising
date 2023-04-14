@@ -16,18 +16,18 @@
 
   <p>
     <strong>Date:</strong>
-    <%= event.date %>
+    <%=  event.date %>
   </p>
 
-  <%# <p>
-  <strong>Expiry Date:</strong>
-  <%= event.date + 90.days%>
-  <%# </p> %> 
-
- <p>
-  <strong>Days To Event:</strong>
-  <%= event.days_to_event%>
+    <p>
+    <strong>Exp Date:</strong>
+    <%= event.expiry_date %>
   </p>
-   
+  
+    <%# <%= Date.new(event.date.year,event.date.month,event.date.day) %> 
+  
+  </p>
+
+
 
 </div>
