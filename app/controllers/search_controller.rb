@@ -1,7 +1,7 @@
 class SearchController < ApplicationController
     def search_event 
-        @get_events = Event.where(" title LIKE ?", "#{params[:title]}%" )
-        puts @get_events
+        @get_events = Event.all.where(" title LIKE ?", "#{params[:title]}%" )
+        @get_events
     end
 end
 

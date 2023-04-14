@@ -13,8 +13,11 @@ Rails.application.routes.draw do
   get 'events/show'
   get 'pages/about'
   get 'users', to: 'users#index'
-  get 'events/edit'
-  get '/search_event', to: 'search#search_event'
-  get '/user/:id', to: 'users#show'
+  get 'events/edit/:id', to: 'events#edit' , as: :edit_events_by_admin
+  get '/search_event', to: 'events#search_event'
+
+  get '/search_user', to: 'users#search_user'
+  #get '/search_event/:title', to: 'events#search_event'
+  get '/user/:id', to: 'users#show', as: :user
 
 end

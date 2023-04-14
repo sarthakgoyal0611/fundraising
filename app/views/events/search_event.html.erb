@@ -1,0 +1,14 @@
+<body style="background-color:oldlace;">
+<%= form_with url: "/search_event", method: :get do |form| %>
+  <%= form.text_field :title %>
+  <%= form.submit "Search" %>
+<% end %>
+<% @get_events.each do |event| %>
+    <%= render event %> 
+    <p>
+      <%= link_to "Show this event", event %>
+    </p>
+    ---------------------------------------------------------
+  <% end %>
+  <br>
+   <%= link_to 'Home Page', root_path %>

@@ -1,5 +1,11 @@
 
 <center> <h1> Welcome to Fund Here!</h1> </center>
+ 
+<right>
+Current Time- <%= time = Time.new%>
+<%= puts time.inspect%>
+</right>
+
 <body style="background-color:azure;">
 
 <body>
@@ -12,6 +18,7 @@
 <center>
 <h3>
 
+
 <% if current_user && current_user.is_admin == true %>
  <%= link_to 'All Users', users_path %> |
  <% end %>
@@ -20,7 +27,7 @@
     <%= link_to 'About Us', pages_about_path %> |  
     <%= link_to 'Contact Us', pages_contact_path %> | 
     <% if current_user %>
-        <%= link_to 'Show My profile' %>
+        <%= link_to 'Show My profile', user_path(current_user)%>
     <% end %>
     
       </h3>

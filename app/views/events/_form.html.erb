@@ -31,6 +31,7 @@
     <%= form.date_field :date %>
   </div>
 
+
  <div>
     <%= form.label :Event_Photograph, style: "display: block" %>
     <%= form.file_field :photograph %>
@@ -39,6 +40,16 @@
     </div>
   </div>
 
+  <%= form.radio_button :is_visible, 'True' %> Visible to Donator<br />
+  <%= form.radio_button :is_visible, 'False' %> Hidden from Donator<br />
+
+ <div>
+ <% if current_user && current_user.is_admin == true %>
+    <%= form.label :days_to_event, style: "display: block" %>
+    <%= form.number_field :days_to_event %>
+    <% end %>
+    <div>
+  
   <div>
     <%= form.submit %>
   </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_11_073343) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_13_174631) do
   create_table "events", force: :cascade do |t|
     t.string "title"
     t.string "description"
@@ -19,6 +19,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_11_073343) do
     t.datetime "updated_at", null: false
     t.date "date"
     t.string "photograph"
+    t.boolean "is_visible", default: false
+    t.integer "days_to_event"
   end
 
   create_table "users", force: :cascade do |t|

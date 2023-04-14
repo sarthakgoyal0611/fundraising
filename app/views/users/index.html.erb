@@ -1,10 +1,12 @@
-<div id="articles">
+<body style="background-color:oldlace;">
+<%= link_to 'Search Users', search_user_path %>
     <ol>
         <% @users.each do |user| %>
             <li>
                 <%= user.first_name + " " + user.last_name %>
                 <%= user.email %>  
                  <%= user.dob %>
+                 
                   <%# <img src=<%= @user.avatar %>
                 <%#= link_to "Show profile", profile_path(user) %>
 

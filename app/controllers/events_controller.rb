@@ -5,16 +5,33 @@ class EventsController < ApplicationController
   # before_action :check_is_admin, only: %i[edit update destroy ]
   # GET /events or /events.json
   def index
+    if current_user && current_user.is_admin 
+
     @events = Event.all
 
-    @q = Event.ransack(params[:q])
-  @events = @q.result(distinct: true)
+    else
+      # @events = Event.all.where({is_visible: true}) && @events = Event.all.where({is_completed: false})
+      @events = Event.all.where({is_visible: true}) 
+    end
+
+  #   @q = Event.ransack(params[:q])
+  # @events = @q.result(distinct: true)
 
   end
 
   # GET /events/1 or /events/1.json
   def show
   end
+  
+    def search_event 
+        @get_events = Event.all.where(" title LIKE ?", "%#{params[:title]}%" )
+        # p "========================================"
+        # p @get_events
+        # p "---------------------------------------"
+
+    end
+
+
 
   # GET /events/new
   def new
@@ -24,6 +41,7 @@ class EventsController < ApplicationController
   # GET /events/1/edit
   def edit
   end
+
 
   # POST /events or /events.json
   def create
@@ -42,6 +60,9 @@ class EventsController < ApplicationController
 
   # PATCH/PUT /events/1 or /events/1.json
   def update
+    p '==================================='
+    p event_params
+    p '==================================='
     respond_to do |format|
       if @event.update(event_params)
         format.html { redirect_to event_url(@event), notice: "Event was successfully updated." }
@@ -71,7 +92,7 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:title, :description, :Amount, :date, :photograph)
+      params.require(:event).permit(:title, :description, :Amount, :date, :photograph, :is_visible, :days_to_event)
     end
 
 
