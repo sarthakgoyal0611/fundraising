@@ -30,7 +30,7 @@ gem "jbuilder"
 gem 'devise'
 gem 'carrierwave', '>= 3.0.0.beta', '< 4.0'
 gem 'ransack'
-gem 'will_paginate', '~> 3.1.0'
+gem 'stripe'
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 

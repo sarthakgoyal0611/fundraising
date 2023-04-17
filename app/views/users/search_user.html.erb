@@ -1,7 +1,23 @@
 <body style="background-color:oldlace;">
 <%= form_with url: "/search_user", method: :get do |form| %>
-  <%= form.text_field :title %>
+  <%= form.text_field :first_name %>
   <%= form.submit "Search" %>
 <% end %>
 <% @get_user.each do |user| %>
+ <li>
+                <%= user.first_name + " " + user.last_name %>
+                <%= user.email %>  
+                 <%= user.dob %>
+
+             <% if current_user && current_user.is_admin %>
+            <%= link_to "Delete profile", delete_user_path(user), method: :delete, data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?", turbo_method: :delete} %>
+            <% end %>
+                 
+                  <%# <img src=<%= @user.avatar %>
+                <%#= link_to "Show profile", profile_path(user) %>
+
+            </li>
+            <br>
+
+<%# <%= user.first_name + ' ' +user.id.to_s%> 
   <% end %>

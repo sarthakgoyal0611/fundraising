@@ -6,35 +6,28 @@ class EventsController < ApplicationController
   # GET /events or /events.json
   def index
     if current_user && current_user.is_admin 
-
-    @events = Event.all
-
+       @events = Event.all
     elsif current_user
       # @events = Event.all.where({is_visible: true}) && @events = Event.all.where({is_completed: false})
-      @events = Event.all.where({is_visible: true}) 
-
+        @events = Event.all.where({is_visible: true}).or(Event.where({status: 'active'}))
     else
-      @events = Event.all.where({is_visible: true, status: :active})
+        @events = Event.all.where({ status: 'active'})
     end
-
+  end
   #   @q = Event.ransack(params[:q])
   # @events = @q.result(distinct: true)
-
-  end
-
   # GET /events/1 or /events/1.json
-
 
   def show
   end
   
-    def search_event 
-        @get_events = Event.all.where(" title LIKE ?", "%#{params[:title]}%" )
-        # p "========================================"
-        # p @get_events
-        # p "---------------------------------------"
-
-    end
+   def search_event 
+      if current_user && current_user.is_admin
+          @get_events = Event.all.where(" title LIKE ?", "%#{params[:title]}%" )
+      else      
+        @get_events = Event.all.where(" title LIKE ?", "%#{params[:title]}%" ).where({status: 'active'})
+      end
+  end
 
 
 
@@ -52,8 +45,6 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.user = current_user
-
-
     respond_to do |format|
       if @event.save
         format.html { redirect_to event_url(@event), notice: "Event was successfully created." }
@@ -67,9 +58,6 @@ class EventsController < ApplicationController
 
   # PATCH/PUT /events/1 or /events/1.json
   def update
-    p '==================================='
-    p event_params
-    p '==================================='
     respond_to do |format|
       if @event.update(event_params)
         format.html { redirect_to event_url(@event), notice: "Event was successfully updated." }

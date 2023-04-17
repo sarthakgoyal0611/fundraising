@@ -8,9 +8,28 @@
     <% if current_user %>
     This Event is hosted by <%= event.user.first_name + ' ' + event.user.last_name if event.user %>
     <% end %>
-  
-  <strong>Status:</strong> 
+    <br>
+     <strong>Status:</strong> 
   <%= event.status %>
+  <br>
+
+<% if Date.today > event.expiry_date %>
+      <p style="color:red">
+      <strong> Event Expired --- Date</strong> 
+      </p>
+      <% else %>
+        <script async
+          src="https://js.stripe.com/v3/buy-button.js">
+        </script>
+
+        <stripe-buy-button
+          buy-button-id="buy_btn_1MxDtGSB8blTDe5GNjbsHRxi"
+          publishable-key="pk_test_51Mwf5GSB8blTDe5Gkpc97F58I6i2DP3R9YZSWdhho6Bk0ioL3KH2DxRWq3HAkYO5dQY2wxT671BSUJjGPOf646q900M7qgID2U"
+          >
+        </stripe-buy-button>
+    <% end %>
+    <br>
+
     <br>
       <%= link_to "Show this event", event %>
     </p>

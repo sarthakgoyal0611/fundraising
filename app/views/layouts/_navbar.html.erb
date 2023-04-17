@@ -8,8 +8,15 @@
 <span class="icon-bar"></span>
 </button>
 <% if current_user && current_user.is_admin %>
-<%= link_to 'Search Events', search_event_path %> |
+
+<strong> ADMIN</strong>
+<% elsif current_user%>
+<strong> USER PROFILE </strong>
+<% end %>
+</div>
+<% if current_user && current_user.is_admin %>
 <% end %> 
+<%= link_to 'Search Events', search_event_path %> |
 <% if current_user %> 
         <%= link_to 'Show My profile', user_path(current_user)%> |
     <% end %>
@@ -20,8 +27,6 @@
         <%= link_to 'Log in! or Sign-Up', new_user_session_path, class: "nav-link" %> 
       <% end %>
       </ul>
-
-</div>
 
 
 <div class="collapse navbar-collape" id="bs-example-navbar-collapse-1">

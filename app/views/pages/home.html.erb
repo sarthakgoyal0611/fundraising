@@ -27,7 +27,7 @@ Current Time- <%= time = Time.new%>
     <%= link_to 'About Us', pages_about_path %> |  
     <%= link_to 'Contact Us', pages_contact_path %>  
     <% if current_user %>
-        | <%= link_to 'Show My profile', user_path(current_user)%>
+        |<%= link_to 'Show My profile', user_path(current_user)%>
     <% end %>
     
       </h3>

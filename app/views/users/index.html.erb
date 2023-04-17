@@ -1,4 +1,6 @@
+<% if  current_user.is_admin == true %>
 <body style="background-color:oldlace;">
+
 <%= link_to 'Search Users', search_user_path %>
     <ol>
         <% @users.each do |user| %>
@@ -6,13 +8,21 @@
                 <%= user.first_name + " " + user.last_name %>
                 <%= user.email %>  
                  <%= user.dob %>
+
+<% if current_user && current_user.is_admin %>
+            <%= link_to "Delete profile", delete_user_path(user), method: :delete, data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?", turbo_method: :delete} %>
+            <% end %>
                  
                   <%# <img src=<%= @user.avatar %>
                 <%#= link_to "Show profile", profile_path(user) %>
 
             </li>
-            <br />
+            <br>
         <% end %>
         <%= link_to 'Home Page', root_path %>
     </ol>
 </div>
+<% else%>
+<body style="background-color:azure;">
+    <strong> You are not allowed to view this content. </strong>
+<% end %>
