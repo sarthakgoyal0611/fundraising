@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: %i[ show edit update destroy  ]
+  before_action :set_event, only: %i[ edit update destroy  ]
 
   # before_action :authenticate_user!, only: %i[edit update destroy ]
   # before_action :check_is_admin, only: %i[edit update destroy ]
@@ -19,6 +19,16 @@ class EventsController < ApplicationController
   # GET /events/1 or /events/1.json
 
   def show
+    if current_user && current_user.is_admin
+      @event = Event.find(params[:id])
+
+    else
+        @event = Event.find(params[:id])
+           if @event.status != 'active'
+            #  flash[:alert] = 'Event Not Found'
+              redirect_to root_path
+            end
+          end
   end
   
    def search_event 
