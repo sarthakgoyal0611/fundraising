@@ -1,2 +1,0 @@
-class FundEvent < ApplicationRecord
-end

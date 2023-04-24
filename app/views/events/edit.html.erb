@@ -1,10 +1,14 @@
-<h1>Editing event</h1>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+<body style="background-color:azure;">
+<% if current_user && current_user.is_admin%>
+  <h1>Editing event</h1>
 
-<%= render "form", event: @event %>
+    <%= render "form", event: @event %>
 
-<br>
+  <br>
 
-<div>
-  <%= link_to "Show this event", @event %> |
-  <%= link_to "Back to events", events_path %>
-</div>
+  <div>
+    <%= link_to "Show this event", @event %> |
+    <%= link_to "Back to events", events_path %>
+  </div>
+<% end %>

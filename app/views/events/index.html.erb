@@ -2,6 +2,7 @@
 <body style="background-color:oldlace;">
 <h1>Events</h1>
 
+
 <div id="events">
   <% @events.each do |event| %>
     <%= render event %> 
@@ -12,6 +13,10 @@
     <br>
      <strong>Status:</strong> 
   <%= event.status %>
+
+<% if event.status == 'active'%>
+    <%= image_tag("homeimages/verified.png", width: "1%" ) %>
+  <% end %>
   <br>
 
 <% if Date.today > event.expiry_date %>
@@ -34,7 +39,7 @@
     <br>
       <%= link_to "Show this event", event %>
     </p>
-    ---------------------------------------------------------
+    <hr>
   <% end %>
 </div>
 <% if current_user  %>

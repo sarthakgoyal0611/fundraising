@@ -39,8 +39,6 @@ class EventsController < ApplicationController
       end
   end
 
-
-
   # GET /events/new
   def new
     @event = Event.new
@@ -49,7 +47,6 @@ class EventsController < ApplicationController
   # GET /events/1/edit
   def edit
   end
-
 
   # POST /events or /events.json
   def create
@@ -97,7 +94,7 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:title, :description, :Amount, :date, :photograph, :is_visible, :expiry_date, :status)
+      params.require(:event).permit(:title, :description, :Amount, :date, :photograph, :is_visible, :expiry_date, :status, :raised_amount)
     end
 
 

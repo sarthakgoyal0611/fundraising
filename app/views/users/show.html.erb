@@ -1,19 +1,16 @@
+<body style="background-color:oldlace;">
 <h1 class="text-center mt-4"> <%= @user.first_name%>'s profile </h1>
 
 <h3>
-    <i> First Name- <%= @user.first_name%>
+    <i> Full Name- <%= @user.first_name + ' '+ @user.last_name %>
 <br>
-
-    <i> Last Name- <%= @user.last_name%></i>
-<br>
-
     <i> Email- <%= @user.email%></i>
 <br>
 
     <i> Date of Birth- <%= @user.dob%></i>
 <br>
 </h3>
-    <img src=<%= @user.avatar %> />
+    <img src=<%= @user.avatar%> width="300 height="100 >
 <br> 
     <%= link_to 'Edit', edit_user_registration_path %> |
 
