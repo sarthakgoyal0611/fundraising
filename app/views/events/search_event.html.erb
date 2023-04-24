@@ -1,27 +1,40 @@
 <body style="background-color:oldlace;">
+
 <%= form_with url: "/search_event", method: :get do |form| %>
   <%= form.text_field :title %>
   <%= form.submit "Search" %>
 <% end %>
+
 <% @get_events.each do |event| %>
     <%= render event %> 
     <% if current_user %>
        This Event is hosted by <%= event.user.first_name + ' '+ event.user.last_name + ' ' if event.user %>
     <% end %>
+    
     <strong>Status:</strong> 
-  <%= event.status %>
+     <%= event.status %>
 
-<% if Date.today > event.expiry_date %>
-      <p style="color:red">
-      <strong> Event Expired --- Date</strong> 
-      </p>
+    <% if Date.today > event.expiry_date %>
+        <p style="color:red">
+          <strong> Event Expired --- Date</strong> 
+        </p>
+      <% else %>
+      <br>
+        <script async
+          src="https://js.stripe.com/v3/buy-button.js">
+        </script>
+
+        <stripe-buy-button
+          buy-button-id="buy_btn_1MxDtGSB8blTDe5GNjbsHRxi"
+          publishable-key="pk_test_51Mwf5GSB8blTDe5Gkpc97F58I6i2DP3R9YZSWdhho6Bk0ioL3KH2DxRWq3HAkYO5dQY2wxT671BSUJjGPOf646q900M7qgID2U"
+          >
+        </stripe-buy-button>
     <% end %>
-
     <p>
       <%= link_to "Show this event", event %>
     </p>
     <hr>
-  <% end %>
+<% end %>
   <br>
    <%= link_to 'Home Page', root_path %>
    </body>

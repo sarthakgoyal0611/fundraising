@@ -1,0 +1,21 @@
+<% if current_user && current_user.is_admin %>
+  <body style="background-color:oldlace;">
+
+  <%= form_with url: "/filter_event", method: :get do |form| %>
+    <%= form.select :status, ["draft", "Completed", "Incompleted", "active"] %>
+    <%= form.submit "Apply Filter" %>
+  <% end %>
+
+  <% @get_filterd_events.each do |event| %>
+    <%= render event %> 
+    <% if current_user %>
+       This Event is hosted by <%= event.user.first_name + ' '+ event.user.last_name + ' ' if event.user %>
+    <% end %>
+    <%= link_to "Show this event", event %>
+    <hr>
+  <% end %>
+<% else %>
+<h1>
+Page Not Available
+</h1>
+<% end %>

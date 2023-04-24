@@ -86,6 +86,12 @@ class EventsController < ApplicationController
     end
   end
 
+  def filter_event 
+    if current_user && current_user.is_admin
+        @get_filterd_events = Event.all.where(status: params[:status])
+    end
+end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event

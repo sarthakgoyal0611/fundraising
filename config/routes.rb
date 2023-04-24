@@ -22,5 +22,6 @@ Rails.application.routes.draw do
   #get '/search_event/:title', to: 'events#search_event'
   get '/user/:id', to: 'users#show', as: :user
   delete '/users/:id', to: 'users#delete_user', as: :delete_user
+  get '/filter_event', to: 'events#filter_event'
 
 end

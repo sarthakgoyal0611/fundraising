@@ -8,8 +8,7 @@ class Event < ApplicationRecord
     validates :description, presence: true, length: { minimum: 6, maximum: 1000 }
     validates :date, presence: true
     validates :expiry_date, presence: true
-    validates :Amount, presence: true, comparison: { less_than: 1000000 }
-  
+    validates :Amount, presence: true, comparison: { greater_than: 0 ,less_than: 1000000 }
 
 
     # validates :date, :expiry_date, presence: true, availability: true

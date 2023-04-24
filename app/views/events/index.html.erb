@@ -2,27 +2,25 @@
 <body style="background-color:oldlace;">
 <h1>Events</h1>
 
-
 <div id="events">
   <% @events.each do |event| %>
     <%= render event %> 
-    <p>
     <% if current_user %>
-    This Event is hosted by <%= event.user.first_name + ' ' + event.user.last_name if event.user %>
+      This Event is hosted by <%= event.user.first_name + ' ' + event.user.last_name if event.user %>
     <% end %>
-    <br>
+      <br>
      <strong>Status:</strong> 
-  <%= event.status %>
+      <%= event.status %>
 
-<% if event.status == 'active'%>
-    <%= image_tag("homeimages/verified.png", width: "1%" ) %>
-  <% end %>
-  <br>
+      <% if event.status == 'active'%>
+        <%= image_tag("homeimages/verified.png", width: "1%" ) %>
+      <% end %>
+      <br>
 
-<% if Date.today > event.expiry_date %>
-      <p style="color:red">
-      <strong> Event Expired --- Date</strong> 
-      </p>
+      <% if Date.today > event.expiry_date %>
+        <p style="color:red">
+          <strong> Event Expired --- Date</strong> 
+        </p>
       <% else %>
         <script async
           src="https://js.stripe.com/v3/buy-button.js">
@@ -33,10 +31,8 @@
           publishable-key="pk_test_51Mwf5GSB8blTDe5Gkpc97F58I6i2DP3R9YZSWdhho6Bk0ioL3KH2DxRWq3HAkYO5dQY2wxT671BSUJjGPOf646q900M7qgID2U"
           >
         </stripe-buy-button>
-    <% end %>
-    <br>
-
-    <br>
+      <% end %>
+      <br>
       <%= link_to "Show this event", event %>
     </p>
     <hr>
