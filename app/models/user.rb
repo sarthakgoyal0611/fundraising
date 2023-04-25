@@ -9,12 +9,6 @@ class User < ApplicationRecord
          validates :first_name, presence: true
          validates :last_name, presence: true
          validates :dob, presence: true
-       VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-       validates :email, presence: true, 
-         uniqueness: { case_sensitive: false }, 
-         length: { maximum: 105 },
-         format: { with: VALID_EMAIL_REGEX }
-
          validate :pwd_lower_case, on: :create
          validate :pwd_upper_case, on: :create
          validate :pwd_special_char, on: :create

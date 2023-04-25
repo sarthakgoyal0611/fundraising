@@ -2,7 +2,7 @@
 <h1 class="text-center mt-4"> <%= @user.first_name%>'s profile </h1>
 
 <h3>
-    <i> Full Name- <%= @user.first_name + ' '+ @user.last_name %>
+    <i> Full Name- <%= @user.first_name + ' '+ @user.last_name %></i>
 <br>
     <i> Email- <%= @user.email%></i>
 <br>
@@ -10,7 +10,9 @@
     <i> Date of Birth- <%= @user.dob%></i>
 <br>
 </h3>
+<% if @user.avatar.present? %>
     <img src=<%= @user.avatar%> width="300 height="100 >
+<% end %>
 <br> 
     <%= link_to 'Edit', edit_user_registration_path %> |
 
@@ -18,4 +20,6 @@
 
     <%= link_to 'Sign-Out', destroy_user_session_path, method: :delete, data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?", turbo_method: :delete} %>  |
 
-    <%= link_to 'Home Page', root_path %>
+    <%= link_to 'Home Page', root_path %> |
+
+    <%= link_to "Back", :back %>

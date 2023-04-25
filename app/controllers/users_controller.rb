@@ -11,6 +11,7 @@ class UsersController < ApplicationController
             flash[:alert] = "You can't see Other User"
             redirect_to root_path
         end
+
     end
 
     def delete_user

@@ -9,7 +9,9 @@
 
 <br>
 <%# <%= "(Admin)" if current_user.admin? %> 
+<% if @event.photograph.present? %>
 <img src=<%= @event.photograph %> width="300 height="100 > 
+<% end%>
 <br>
 </br>
 
