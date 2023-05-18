@@ -5,7 +5,7 @@ class EventsController < ApplicationController
   # before_action :check_is_admin, only: %i[edit update destroy ]
   # GET /events or /events.json
   def index
-    if current_user && current_user.is_admin 
+    if current_user && current_user.is_admin  
        @events = Event.all
     elsif current_user
       # @events = Event.all.where({is_visible: true}) && @events = Event.all.where({is_completed: false})
